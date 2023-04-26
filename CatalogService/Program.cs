@@ -1,13 +1,33 @@
+using CatalogService.Data;
+using CatalogService.Services;
+using CatalogService.Services.StockService;
+using MarketplaceApi.Utilities;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+builder.AddSerilogFileLogger();
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers().AddExceptionFilter();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddDbContext<CatalogDbContext>(options =>
+{
+    options.UseNpgsql(configuration.GetConnectionString("PostgreSQL"));
+
+    if (builder.Environment.IsDevelopment())
+    {
+        options.EnableDetailedErrors();
+    }
+});
+
+builder.Services.AddMediatRAndValidators();
+builder.Services.AddApiClientService<IStockService, StockService>();
 
 var app = builder.Build();
+using var startupScope = app.Services.CreateScope();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -17,9 +37,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

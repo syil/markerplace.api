@@ -11,11 +11,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService", "CatalogSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService", "OrderService\OrderService.csproj", "{E537E169-153B-4294-A83A-9E1228BF646C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockService", "StockService\StockService.csproj", "{6B721EF5-0223-47AC-83F0-BD92E148C7D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockService", "StockService\StockService.csproj", "{6B721EF5-0223-47AC-83F0-BD92E148C7D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "PaymentService\PaymentService.csproj", "{6BA27A79-5306-43FA-8CBF-AFEA1E448AAD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{C78D6E97-0989-4364-94D3-2DED5736EEFA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		db-reset.ps1 = db-reset.ps1
+		db-up-init.ps1 = db-up-init.ps1
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "Gateway\Gateway.csproj", "{7ECD083C-3D34-4DEF-85F3-D137787B737F}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedUtilities", "SharedUtilities\SharedUtilities.shproj", "{300F64F5-EC79-4339-B801-A0C9BE5CF3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerService.Test", "CustomerService.Test\CustomerService.Test.csproj", "{788F4D18-7C9F-4253-A688-DFBB3612CD6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,19 +54,23 @@ Global
 		{6B721EF5-0223-47AC-83F0-BD92E148C7D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B721EF5-0223-47AC-83F0-BD92E148C7D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B721EF5-0223-47AC-83F0-BD92E148C7D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BA27A79-5306-43FA-8CBF-AFEA1E448AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BA27A79-5306-43FA-8CBF-AFEA1E448AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BA27A79-5306-43FA-8CBF-AFEA1E448AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BA27A79-5306-43FA-8CBF-AFEA1E448AAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7ECD083C-3D34-4DEF-85F3-D137787B737F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7ECD083C-3D34-4DEF-85F3-D137787B737F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7ECD083C-3D34-4DEF-85F3-D137787B737F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7ECD083C-3D34-4DEF-85F3-D137787B737F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{788F4D18-7C9F-4253-A688-DFBB3612CD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788F4D18-7C9F-4253-A688-DFBB3612CD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788F4D18-7C9F-4253-A688-DFBB3612CD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788F4D18-7C9F-4253-A688-DFBB3612CD6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F88187D-54DF-4890-8729-7AB8C2D179C9}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedUtilities\SharedUtilities.projitems*{300f64f5-ec79-4339-b801-a0c9be5cf3aa}*SharedItemsImports = 13
+		SharedUtilities\SharedUtilities.projitems*{3f884bff-86a9-42eb-aeca-8e53c1c4bb1b}*SharedItemsImports = 5
+		SharedUtilities\SharedUtilities.projitems*{6b721ef5-0223-47ac-83f0-bd92e148c7d0}*SharedItemsImports = 5
+		SharedUtilities\SharedUtilities.projitems*{6d66695b-491d-4514-8e7f-e580d078873f}*SharedItemsImports = 5
+		SharedUtilities\SharedUtilities.projitems*{d3dd9062-6196-45de-9a16-0497afd07692}*SharedItemsImports = 5
+		SharedUtilities\SharedUtilities.projitems*{e537e169-153b-4294-a83a-9e1228bf646c}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

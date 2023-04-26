@@ -1,11 +1,26 @@
+using MarketplaceApi.Utilities;
+using Microsoft.EntityFrameworkCore;
+using StockService.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+builder.AddSerilogFileLogger();
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers().AddExceptionFilter();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<StockDbContext>(options =>
+{
+    options.UseNpgsql(configuration.GetConnectionString("PostgreSQL"));
+
+    if (builder.Environment.IsDevelopment())
+    {
+        options.EnableDetailedErrors();
+    }
+});
+
+builder.Services.AddMediatRAndValidators();
 
 var app = builder.Build();
 
@@ -17,9 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

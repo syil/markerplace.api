@@ -1,11 +1,26 @@
+using CustomerService.Data;
+using MarketplaceApi.Utilities;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+builder.AddSerilogFileLogger();
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<CustomerDbContext>(options =>
+{
+    options.UseNpgsql(configuration.GetConnectionString("PostgreSQL"));
+
+    if (builder.Environment.IsDevelopment())
+    {
+        options.EnableDetailedErrors();
+    }
+});
+
+builder.Services.AddMediatRAndValidators();
 
 var app = builder.Build();
 
